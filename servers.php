@@ -1,13 +1,7 @@
 <?php
 $pageTitle = 'Iron Viper Squadron | Server Info';
 $activePage = 'servers';
-require_once __DIR__ . '/private/bootstrap.php';
-
-$servers = db_fetch_all('SELECT name, slug, region, status, current_map, slots, description FROM servers ORDER BY name ASC');
-if (!$servers) {
-    $servers = include __DIR__ . '/data/servers.php';
-}
-
+$servers = include __DIR__ . '/data/servers.php';
 include __DIR__ . '/header.php';
 ?>
 
@@ -35,7 +29,7 @@ include __DIR__ . '/header.php';
               <?php echo htmlspecialchars($server['status']); ?>
             </span>
           </td>
-          <td><?php echo htmlspecialchars($server['current_map'] ?? $server['map']); ?></td>
+          <td><?php echo htmlspecialchars($server['map']); ?></td>
           <td><?php echo htmlspecialchars($server['slots']); ?></td>
           <td><a class="btn" href="/server.php?slug=<?php echo urlencode($server['slug']); ?>">View</a></td>
         </tr>

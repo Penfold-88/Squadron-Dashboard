@@ -1,11 +1,5 @@
 <?php
 return [
-    'db' => [
-        'host' => 'localhost',
-        'name' => 'squadron_dashboard',
-        'user' => 'squadron_user',
-        'password' => 'change_me',
-    ],
     'roles' => [
         'member' => 'Verified Squadron Member',
         'editor' => 'Squadron Editor',

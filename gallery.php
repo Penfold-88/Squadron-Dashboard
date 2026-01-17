@@ -1,18 +1,13 @@
 <?php
 $pageTitle = 'Iron Viper Squadron | Gallery';
 $activePage = 'gallery';
-require_once __DIR__ . '/private/bootstrap.php';
-
-$images = db_fetch_all('SELECT filename, caption FROM gallery_images ORDER BY uploaded_at DESC');
-if (!$images) {
-    $galleryDir = __DIR__ . '/gallery';
-    if (is_dir($galleryDir)) {
-        $images = array_values(array_filter(scandir($galleryDir), function ($file) {
-            return preg_match('/\.(jpg|jpeg|png|gif)$/i', $file);
-        }));
-    }
+$galleryDir = __DIR__ . '/gallery';
+$images = [];
+if (is_dir($galleryDir)) {
+    $images = array_values(array_filter(scandir($galleryDir), function ($file) {
+        return preg_match('/\.(jpg|jpeg|png|gif)$/i', $file);
+    }));
 }
-
 include __DIR__ . '/header.php';
 ?>
 
@@ -24,13 +19,9 @@ include __DIR__ . '/header.php';
   <?php else: ?>
     <div class="gallery" style="margin-top:1.5rem;">
       <?php foreach ($images as $image): ?>
-        <?php
-          $filename = is_array($image) ? $image['filename'] : $image;
-          $caption = is_array($image) ? ($image['caption'] ?? $filename) : $image;
-        ?>
         <figure>
-          <img src="/gallery/<?php echo rawurlencode($filename); ?>" alt="Squadron sortie image" />
-          <figcaption><?php echo htmlspecialchars($caption); ?></figcaption>
+          <img src="/gallery/<?php echo rawurlencode($image); ?>" alt="Squadron sortie image" />
+          <figcaption><?php echo htmlspecialchars($image); ?></figcaption>
         </figure>
       <?php endforeach; ?>
     </div>
