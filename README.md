@@ -23,6 +23,3 @@ The schema seeds default theme settings and prepares tables for news, events, se
 1. Log in with the seeded `manager / command` account (from `private/config.php`) before you connect MySQL.
 2. Create real user accounts in the Administration Interface once the database is configured.
 3. Update the theme colors and logo path in the Administration Interface to brand the site.
-
-## Installer
-If you prefer a guided setup, visit `/install.php` to configure the database, seed the schema, and create a manager account. Remove `install.php` after setup.
